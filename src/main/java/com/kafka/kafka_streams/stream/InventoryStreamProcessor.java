@@ -7,12 +7,15 @@ import com.kafka.kafka_streams.config.KafkaTopicsConfig;
 import com.kafka.kafka_streams.enums.InventoryStatus;
 import com.kafka.kafka_streams.enums.OrderStatus;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+
 @Component
+@Slf4j
 @RequiredArgsConstructor
 public class InventoryStreamProcessor {
 
@@ -23,6 +26,7 @@ public class InventoryStreamProcessor {
 
     @Bean
     public KStream<String, String> inventoryProcessor(StreamsBuilder builder) {
+        log.info("💡 Kafka Streams inventoryProcessor started");
         KStream<String, String> orderStream = builder.stream(topicsConfig.getOrderEvents());
 
         KStream<String, String> inventoryEvents = orderStream
