@@ -28,7 +28,9 @@ services:
       bash -c "
         /etc/confluent/docker/run &
         sleep 10 &&
-        kafka-topics --create --topic wordcount-input --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server localhost:9092 &&
+        kafka-topics --create --topic order-events --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server localhost:9092 &&
+        kafka-topics --create --topic inventory-events --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server localhost:9092 &&
+        kafka-topics --create --topic payment-events --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server localhost:9092 &&
         wait
       "
 

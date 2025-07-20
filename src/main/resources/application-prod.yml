@@ -1,6 +1,18 @@
 spring:
   application:
     name: kafka-streams
+  kafka:
+    bootstrap-servers: kafka:29092
+    streams:
+      application-id: stock-streams-app
+    consumer:
+      auto-offset-reset: earliest
 
 server:
   port: 8080
+
+kafka:
+  topics:
+    order-events: order-events
+    inventory-events: inventory-events
+    payment-events: payment-events
